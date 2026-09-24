@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Petualangan Bangun Datar - Media Pembelajaran Ciri-Ciri Bangun Datar SD</title>
+<meta name="description" content="Media pembelajaran interaktif materi ciri-ciri bangun datar untuk siswa SD: materi, simulasi, permainan, dan kuis.">
+<style>
+/* ============================================================
+   PETUALANGAN BANGUN DATAR - stylesheet
+   Palet ceria, kartun, tanpa emoji
+   ============================================================ */
+:root{
+  --pink:#ff6b9d;   --pink-d:#e14f7f;
+  --teal:#22c1c3;   --teal-d:#15999b;
+  --yellow:#ffd93d; --yellow-d:#e6bd14;
+  --purple:#7c5cff; --purple-d:#5f3ff0;
+  --orange:#ff8c42; --orange-d:#e5712a;
+  --green:#3ddc84;  --green-d:#22b866;
+  --blue:#4d96ff;   --blue-d:#2f79e6;
+  --red:#ff5757;
+  --ink:#2b2b4a;
+  --paper:#fffdf6;
+  --line:#2b2b4a;
+  --r:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Comic Sans MS","Comic Neue","Chalkboard SE","Segoe UI",system-ui,sans-serif;
+  color:var(--ink);
+  background-color:#fff7e6;
+  background-image:
+    radial-gradient(circle, #ffe0ec 4px, transparent 5px),
+    radial-gradient(circle, #dff7f6 4px, transparent 5px);
+  background-size:64px 64px,64px 64px;
+  background-position:0 0,32px 32px;
+  line-height:1.65;
+  -webkit-tap-highlight-color:transparent;
+}
+h1,h2,h3,h4{margin:0 0 .4em;line-height:1.2}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit}
+
+/* ---------- NAVIGASI ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:var(--paper);
+  border-bottom:5px solid var(--yellow);
+  box-shadow:0 8px 20px rgba(43,43,74,.10);
+}
+.nav-in{
+  max-width:1180px;margin:auto;padding:8px 16px;
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand svg{width:46px;height:46px;flex:none}
+.brand-txt{display:flex;flex-direction:column;line-height:1}
+.brand-txt b{font-size:18px;letter-spacing:.3px}
+.brand-txt span{font-size:11px;color:#6b6b8d}
+.nav-links{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.nav-links a{
+  text-decoration:none;color:var(--ink);font-size:15px;font-weight:bold;
+  background:#fff;border:3px solid var(--line);border-radius:999px;
+  padding:7px 16px;box-shadow:0 4px 0 var(--line);
+  transition:transform .08s ease, box-shadow .08s ease, background .15s;
+}
+.nav-links a:hover{background:var(--yellow)}
+.nav-links a:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+.nav-links a.active{background:var(--purple);color:#fff}
+.icon-btn{
+  width:46px;height:46px;border-radius:50%;border:3px solid var(--line);
+  background:#fff;cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 4px 0 var(--line);font-weight:bold;font-size:15px;color:var(--ink);
+}
+.icon-btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+
+/* ---------- UMUM ---------- */
+.wrap{max-width:1180px;margin:auto;padding:0 16px}
+.section{padding:44px 0 10px}
+.sec-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px}
+.sec-num{
+  width:52px;height:52px;flex:none;border-radius:16px;border:4px solid var(--line);
+  display:grid;place-items:center;font-size:24px;font-weight:bold;color:#fff;
+  background:var(--purple);transform:rotate(-6deg);box-shadow:0 5px 0 var(--line);
+}
+.sec-head h2{font-size:clamp(22px,4.2vw,34px);margin:0}
+.sec-head p{margin:0;color:#5b5b7e;font-size:15px}
+.card{
+  background:var(--paper);border:4px solid var(--line);border-radius:var(--r);
+  box-shadow:0 8px 0 rgba(43,43,74,.18);padding:18px;
+}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+
+.btn{
+  border:3px solid var(--line);border-radius:999px;padding:11px 22px;
+  font-size:16px;font-weight:bold;cursor:pointer;background:#fff;color:var(--ink);
+  box-shadow:0 5px 0 var(--line);
+  transition:transform .08s ease, box-shadow .08s ease, filter .15s;
+}
+.btn:hover{filter:brightness(1.06)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--line)}
+.btn.p{background:var(--pink);color:#fff}
+.btn.t{background:var(--teal);color:#fff}
+.btn.y{background:var(--yellow)}
+.btn.v{background:var(--purple);color:#fff}
+.btn.g{background:var(--green);color:#fff}
+.btn.o{background:var(--orange);color:#fff}
+.btn.sm{padding:7px 15px;font-size:14px;box-shadow:0 4px 0 var(--line)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* ---------- HERO ---------- */
+.hero{
+  max-width:1180px;margin:22px auto 0;padding:0 16px;
+  display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:stretch;
+}
+.hero-box{
+  background:linear-gradient(160deg,#fffdf6,#fff0f6);
+  border:5px solid var(--line);border-radius:30px;
+  box-shadow:0 10px 0 rgba(43,43,74,.2);
+  padding:26px;position:relative;overflow:hidden;
+}
+.hero-box h1{font-size:clamp(26px,5vw,44px);margin-bottom:8px}
+.hero-box h1 .hl{color:var(--pink);text-shadow:3px 3px 0 var(--yellow)}
+.hero-box p{font-size:17px;max-width:52ch}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.hero-mascot{
+  background:linear-gradient(160deg,#eafcff,#e9e6ff);
+  border:5px solid var(--line);border-radius:30px;
+  box-shadow:0 10px 0 rgba(43,43,74,.2);
+  display:grid;place-items:center;padding:12px;
+}
+.hero-mascot svg{width:min(100%,260px);height:auto}
+.float{animation:float 3.4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+.badge-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.badge{
+  background:#fff;border:3px solid var(--line);border-radius:999px;
+  padding:5px 13px;font-size:13px;font-weight:bold;box-shadow:0 3px 0 var(--line);
+}
+
+/* ---------- KARTU BANGUN (MATERI) ---------- */
+.shape-card{
+  background:var(--paper);border:4px solid var(--line);border-radius:var(--r);
+  box-shadow:0 7px 0 rgba(43,43,74,.18);overflow:hidden;cursor:pointer;
+  transition:transform .14s ease, box-shadow .14s ease;
+  display:flex;flex-direction:column;
+}
+.shape-card:hover{transform:translate(-2px,-4px);box-shadow:0 12px 0 rgba(43,43,74,.2)}
+.shape-card:active{transform:translateY(2px);box-shadow:0 4px 0 rgba(43,43,74,.18)}
+.sc-top{height:170px;display:grid;place-items:center;position:relative;border-bottom:4px solid var(--line)}
+.sc-top svg{width:150px;height:150px}
+.sc-name{font-size:20px;font-weight:bold;padding:10px 14px 2px}
+.sc-sub{font-size:13px;color:#5b5b7e;padding:0 14px 12px}
+.sc-tags{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 14px;margin-top:auto}
+.tag{font-size:11px;font-weight:bold;border-radius:999px;padding:3px 9px;border:2px solid var(--line);background:#fff}
+
+/* ---------- MODAL MATERI ---------- */
+.modal{
+  position:fixed;inset:0;z-index:100;display:none;
+  background:rgba(43,43,74,.55);padding:18px;overflow:auto;
+}
+.modal.open{display:flex;align-items:flex-start;justify-content:center}
+.modal-box{
+  background:var(--paper);border:5px solid var(--line);border-radius:28px;
+  box-shadow:0 12px 0 rgba(43,43,74,.3);width:min(900px,100%);margin:auto;
+  animation:pop .25s ease;
+}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-head{
+  display:flex;align-items:center;gap:12px;padding:14px 18px;
+  border-bottom:4px solid var(--line);border-radius:22px 22px 0 0;
+}
+.modal-head h3{font-size:24px;margin:0}
+.modal-body{padding:18px;display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}
+.modal-body ul{margin:0;padding-left:20px}
+.modal-body li{margin-bottom:6px}
+.x-btn{margin-left:auto}
+.fact-row{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.fact{
+  background:#fff;border:3px solid var(--line);border-radius:14px;
+  padding:6px 12px;font-size:13px;font-weight:bold;box-shadow:0 3px 0 var(--line);
+}
+.formula{
+  background:#2b2b4a;color:#fff;border-radius:14px;padding:12px 14px;
+  font-size:15px;font-weight:bold;margin-top:10px;
+}
+
+/* ---------- SIMULASI ---------- */
+.sim-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.sim-tab{
+  border:3px solid var(--line);border-radius:16px;background:#fff;
+  padding:10px 16px;font-weight:bold;cursor:pointer;box-shadow:0 5px 0 var(--line);
+  display:flex;align-items:center;gap:8px;font-size:15px;
+}
+.sim-tab:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
+.sim-tab.active{background:var(--yellow)}
+.sim-pane{display:none}
+.sim-pane.active{display:block;animation:fadein .25s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{
+  border:3px solid var(--line);background:#fff;border-radius:999px;
+  padding:6px 14px;font-size:14px;font-weight:bold;cursor:pointer;
+  box-shadow:0 4px 0 var(--line);
+}
+.chip:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+.chip.on{background:var(--teal);color:#fff}
+
+.explorer{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.stage{
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    repeating-linear-gradient(0deg,#eef1ff 0 24px,transparent 24px 48px),
+    repeating-linear-gradient(90deg,#eef1ff 0 24px,transparent 24px 48px);
+  border:4px solid var(--line);border-radius:20px;
+  display:grid;place-items:center;padding:18px;min-height:340px;
+}
+.stage svg{width:min(100%,340px);height:auto}
+.toggle-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:14px 0}
+.info-item{
+  background:#fff;border:3px solid var(--line);border-radius:14px;
+  padding:8px 10px;text-align:center;box-shadow:0 4px 0 var(--line);
+}
+.info-item b{display:block;font-size:22px;color:var(--purple)}
+.info-item span{font-size:12px;color:#5b5b7e}
+.say{
+  display:flex;gap:12px;align-items:flex-start;background:#eafcff;
+  border:3px solid var(--line);border-radius:18px;padding:12px;margin-top:14px;
+}
+.say svg{width:56px;height:56px;flex:none}
+.say p{margin:0;font-size:15px}
+
+/* lab keliling & luas */
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.slider-box{background:#fff;border:3px solid var(--line);border-radius:16px;padding:12px;margin-bottom:12px;box-shadow:0 4px 0 var(--line)}
+.slider-box label{font-weight:bold;font-size:14px;display:flex;justify-content:space-between}
+input[type=range]{width:100%;accent-color:var(--purple);height:26px}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.res{
+  border-radius:16px;padding:12px;text-align:center;border:4px solid var(--line);
+  box-shadow:0 5px 0 var(--line);
+}
+.res.k{background:var(--teal);color:#fff}
+.res.l{background:var(--pink);color:#fff}
+.res b{display:block;font-size:26px}
+
+/* drag & drop */
+.dd-area{display:grid;grid-template-columns:1fr;gap:14px}
+.dd-items{
+  background:repeating-linear-gradient(45deg,#fff6fb 0 14px,#fff 14px 28px);
+  border:4px dashed var(--line);border-radius:20px;padding:14px;
+  display:flex;gap:12px;flex-wrap:wrap;justify-content:center;min-height:96px;
+}
+.dd-item{
+  width:92px;background:#fff;border:3px solid var(--line);border-radius:16px;
+  padding:6px;cursor:grab;text-align:center;box-shadow:0 5px 0 var(--line);
+  touch-action:none;user-select:none;
+}
+.dd-item:active{cursor:grabbing}
+.dd-item.dragging{opacity:.35}
+.dd-item svg{width:66px;height:66px;margin:auto}
+.dd-item span{display:block;font-size:12px;font-weight:bold}
+.dd-bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.bin{
+  border:4px solid var(--line);border-radius:20px;background:#fff;min-height:170px;
+  padding:10px;box-shadow:0 6px 0 rgba(43,43,74,.18);transition:background .15s,transform .1s;
+}
+.bin h4{font-size:15px;margin:0 0 8px;text-align:center}
+.bin .slot{
+  border:3px dashed #cfd0e6;border-radius:14px;min-height:110px;padding:8px;
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-content:flex-start;
+}
+.bin.over{background:#eafff3;transform:scale(1.03)}
+.bin .slot .mini{width:56px}
+.bin .slot .mini svg{width:40px;height:40px}
+.shake{animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pop-out{animation:popout .3s forwards}
+@keyframes popout{to{transform:scale(0);opacity:0}}
+
+/* memory */
+.mem{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:520px;margin:auto}
+.mem-card{
+  aspect-ratio:1/1;border:4px solid var(--line);border-radius:18px;background:var(--purple);
+  box-shadow:0 6px 0 var(--line);cursor:pointer;display:grid;place-items:center;
+  padding:6px;transition:transform .12s;overflow:hidden;
+}
+.mem-card:active{transform:translateY(3px);box-shadow:0 3px 0 var(--line)}
+.mem-card .face{display:none;text-align:center}
+.mem-card.open{background:#fff}
+.mem-card.open .face{display:block}
+.mem-card.open .back{display:none}
+.mem-card.done{background:var(--green);cursor:default}
+.mem-card svg{width:100%;height:auto}
+.mem-card .nm{font-size:13px;font-weight:bold;line-height:1.2}
+.mem-card .back{font-size:30px;font-weight:bold;color:#fff}
+
+/* ---------- KUIS ---------- */
+.quiz-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.progress{flex:1;min-width:180px;height:22px;background:#fff;border:3px solid var(--line);border-radius:999px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--green);width:0;transition:width .3s}
+.q-figure{display:grid;place-items:center;background:#fff;border:3px solid var(--line);border-radius:18px;padding:10px;margin-bottom:12px}
+.q-figure svg{width:min(100%,220px);height:auto}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.opt{
+  text-align:left;border:3px solid var(--line);border-radius:16px;background:#fff;
+  padding:12px 14px;font-size:16px;font-weight:bold;cursor:pointer;
+  box-shadow:0 5px 0 var(--line);display:flex;align-items:center;gap:10px;
+}
+.opt:active{transform:translateY(3px);box-shadow:0 2px 0 var(--line)}
+.opt.correct{background:var(--green);color:#fff}
+.opt.wrong{background:var(--red);color:#fff}
+.fb{margin-top:14px;border-radius:16px;padding:12px 14px;font-weight:bold;display:none}
+.fb.show{display:block;animation:fadein .2s}
+.fb.ok{background:#e6fff0;border:3px solid var(--green)}
+.fb.no{background:#ffeaea;border:3px solid var(--red)}
+.score-box{text-align:center;padding:10px 0}
+.stars{display:flex;justify-content:center;gap:2px;margin:6px 0 10px}
+
+/* confetti */
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden}
+.cf{position:absolute;width:12px;height:12px;border-radius:3px;animation:fall linear forwards}
+@keyframes fall{
+  0%{transform:translateY(-40px) rotate(0);opacity:1}
+  100%{transform:translateY(105vh) rotate(720deg);opacity:.9}
+}
+
+/* ---------- FOOTER ---------- */
+.footer{
+  margin-top:44px;background:var(--ink);color:#fff;border-top:6px solid var(--yellow);
+  padding:26px 0;text-align:center;
+}
+.footer p{margin:4px 0;font-size:14px;opacity:.9}
+.footer .bag{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px}
+.footer .bag span{background:#fff;color:var(--ink);border-radius:999px;padding:5px 13px;font-size:13px;font-weight:bold}
+
+/* ---------- RESPONSIF ---------- */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .explorer,.lab,.modal-body{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .nav-links a{padding:6px 11px;font-size:13px}
+  .brand-txt b{font-size:15px}
+  .mem{grid-template-columns:repeat(4,1fr);gap:8px}
+  .mem-card .nm{font-size:11px}
+  .result-grid{grid-template-columns:1fr}
+  .stage{min-height:270px}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= SPRITE ILUSTRASI ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Maskot: Koko si Persegi -->
+    <symbol id="m-maskot" viewBox="0 0 120 130">
+      <ellipse cx="60" cy="122" rx="36" ry="7" fill="rgba(43,43,74,.15)"/>
+      <rect x="46" y="88" width="10" height="22" rx="5" fill="#7c5cff"/>
+      <rect x="64" y="88" width="10" height="22" rx="5" fill="#7c5cff"/>
+      <rect x="40" y="106" width="19" height="11" rx="5" fill="#2b2b4a"/>
+      <rect x="61" y="106" width="19" height="11" rx="5" fill="#2b2b4a"/>
+      <g transform="rotate(-22 24 74)"><rect x="17" y="58" width="14" height="30" rx="7" fill="#7c5cff"/></g>
+      <g transform="rotate(22 96 74)"><rect x="89" y="58" width="14" height="30" rx="7" fill="#7c5cff"/></g>
+      <rect x="16" y="20" width="88" height="80" rx="20" fill="#ffd93d" stroke="#2b2b4a" stroke-width="5"/>
+      <rect x="16" y="20" width="88" height="22" rx="11" fill="#ff6b9d" stroke="#2b2b4a" stroke-width="5"/>
+      <circle cx="45" cy="58" r="11" fill="#fff" stroke="#2b2b4a" stroke-width="4"/>
+      <circle cx="75" cy="58" r="11" fill="#fff" stroke="#2b2b4a" stroke-width="4"/>
+      <circle cx="46" cy="60" r="4.6" fill="#2b2b4a"/>
+      <circle cx="76" cy="60" r="4.6" fill="#2b2b4a"/>
+      <circle cx="33" cy="74" r="6" fill="#ff6b9d" opacity=".55"/>
+      <circle cx="87" cy="74" r="6" fill="#ff6b9d" opacity=".55"/>
+      <path d="M46 78 q14 13 28 0" fill="none" stroke="#2b2b4a" stroke-width="5" stroke-linecap="round"/>
+    </symbol>
+    <!-- Teman: Sisi si Segitiga -->
+    <symbol id="m-segitiga" viewBox="0 0 110 120">
+      <ellipse cx="55" cy="114" rx="28" ry="6" fill="rgba(43,43,74,.15)"/>
+      <path d="M55 10 L100 100 L10 100 Z" fill="#22c1c3" stroke="#2b2b4a" stroke-width="5" stroke-linejoin="round"/>
+      <circle cx="44" cy="70" r="8" fill="#fff" stroke="#2b2b4a" stroke-width="4"/>
+      <circle cx="68" cy="70" r="8" fill="#fff" stroke="#2b2b4a" stroke-width="4"/>
+      <circle cx="45" cy="71" r="3.4" fill="#2b2b4a"/>
+      <circle cx="69" cy="71" r="3.4" fill="#2b2b4a"/>
+      <path d="M46 84 q9 9 18 0" fill="none" stroke="#2b2b4a" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+    <!-- Teman: Lala si Lingkaran -->
+    <symbol id="m-lingkaran" viewBox="0 0 110 120">
+      <ellipse cx="55" cy="114" rx="28" ry="6" fill="rgba(43,43,74,.15)"/>
+      <circle cx="55" cy="58" r="46" fill="#ff8c42" stroke="#2b2b4a" stroke-width="5"/>
+      <circle cx="42" cy="50" r="9" fill="#fff" stroke="#2b2b4a" stroke-width="4"/>
+      <circle cx="68" cy="50" r="9" fill="#fff" stroke="#2b2b4a" stroke-width="4"/>
+      <circle cx="43" cy="51" r="3.6" fill="#2b2b4a"/>
+      <circle cx="69" cy="51" r="3.6" fill="#2b2b4a"/>
+      <path d="M43 72 q12 11 24 0" fill="none" stroke="#2b2b4a" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="30" cy="66" r="5" fill="#ff5757" opacity=".5"/>
+      <circle cx="80" cy="66" r="5" fill="#ff5757" opacity=".5"/>
+    </symbol>
+    <!-- Ikon kecil untuk tab -->
+    <symbol id="i-kaca" viewBox="0 0 40 40">
+      <circle cx="17" cy="17" r="12" fill="none" stroke="#2b2b4a" stroke-width="4"/>
+      <path d="M26 26 L36 36" stroke="#2b2b4a" stroke-width="5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-ukur" viewBox="0 0 40 40">
+      <rect x="3" y="12" width="34" height="16" rx="3" fill="#ffd93d" stroke="#2b2b4a" stroke-width="3.5"/>
+      <path d="M9 12v7M15 12v10M21 12v7M27 12v10M33 12v7" stroke="#2b2b4a" stroke-width="3"/>
+    </symbol>
+    <symbol id="i-tangan" viewBox="0 0 40 40">
+      <path d="M12 22V8a3 3 0 016 0v10V6a3 3 0 016 0v12V9a3 3 0 016 0v13V13a3 3 0 016 0v14c0 7-5 12-12 12h-4c-6 0-9-3-12-9l-4-8a3 3 0 015-3l3 4" fill="#fff" stroke="#2b2b4a" stroke-width="3" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-kartu" viewBox="0 0 40 40">
+      <rect x="4" y="7" width="24" height="30" rx="4" fill="#7c5cff" stroke="#2b2b4a" stroke-width="3.5"/>
+      <path d="M31 12l6 6-14 14-8 2 2-8z" fill="#ffd93d" stroke="#2b2b4a" stroke-width="3.5" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ================= NAVIGASI ================= -->
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#beranda">
+      <svg viewBox="0 0 120 130"><use href="#m-maskot"/></svg>
+      <span class="brand-txt">
+        <b>Petualangan Bangun Datar</b>
+        <span>Belajar ciri-ciri bangun datar jadi asyik</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#materi" class="nl">Materi</a>
+      <a href="#simulasi" class="nl">Simulasi</a>
+      <a href="#kuis" class="nl">Kuis</a>
+      <a href="#petunjuk" class="nl">Petunjuk</a>
+    </div>
+    <button class="icon-btn" id="soundBtn" title="Nyalakan / matikan suara">SUARA</button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="beranda">
+  <div class="hero-box">
+    <div class="badge-row">
+      <span class="badge" style="background:#ffe0ec">Kelas 3 - 6 SD</span>
+      <span class="badge" style="background:#eafcff">Materi: Ciri-Ciri Bangun Datar</span>
+      <span class="badge" style="background:#f0ecff">Ada simulasi & permainan</span>
+    </div>
+    <h1>Halo, teman-teman! Ayo kenalan dengan <span class="hl">Bangun Datar</span>!</h1>
+    <p>
+      Di sini kamu bisa melihat bentuk-bentuknya, menghitung sisi dan sudutnya,
+      mencoba simulasi ukur-mengukur, mainkan permainan seru, lalu uji kemampuanmu di kuis.
+      Semuanya sambil bermain, kok!
+    </p>
+    <div class="hero-cta">
+      <a class="btn p" href="#materi">Mulai Belajar</a>
+      <a class="btn y" href="#simulasi">Coba Simulasi</a>
+      <a class="btn g" href="#kuis">Main Kuis</a>
+    </div>
+  </div>
+  <div class="hero-mascot">
+    <div style="display:flex;align-items:flex-end;justify-content:center;gap:4px;width:100%">
+      <div class="float" style="animation-delay:-1.1s;width:32%">
+        <svg viewBox="0 0 110 120"><use href="#m-segitiga"/></svg>
+      </div>
+      <div class="float" style="width:44%">
+        <svg viewBox="0 0 120 130"><use href="#m-maskot"/></svg>
+      </div>
+      <div class="float" style="animation-delay:-2.2s;width:32%">
+        <svg viewBox="0 0 110 120"><use href="#m-lingkaran"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MATERI ================= -->
+<section class="section wrap" id="materi">
+  <div class="sec-head">
+    <div class="sec-num" style="background:var(--pink)">1</div>
+    <div>
+      <h2>Kenali Ciri-Ciri Bangun Datar</h2>
+      <p>Klik salah satu bangun untuk melihat penjelasan lengkapnya.</p>
+    </div>
+  </div>
+  <div class="grid g4" id="materiGrid"></div>
+
+  <div class="say">
+    <svg viewBox="0 0 120 130"><use href="#m-maskot"/></svg>
+    <p>
+      <b>Ciri-ciri bangun datar</b> adalah tanda-tanda yang membedakan satu bangun dengan bangun lainnya.
+      Yang biasanya diamati: banyaknya <b>sisi</b>, banyaknya <b>sudut</b>, besar <b>sudutnya</b>,
+      apakah ada sisi yang <b>sejajar</b> atau <b>sama panjang</b>, dan berapa banyak <b>sumbu simetri</b>-nya.
+    </p>
+  </div>
+</section>
+
+<!-- ================= SIMULASI ================= -->
+<section class="section wrap" id="simulasi">
+  <div class="sec-head">
+    <div class="sec-num" style="background:var(--teal)">2</div>
+    <div>
+      <h2>Simulasi Seru</h2>
+      <p>Coba-coba langsung: perbesar, putar, ukur, dan kelompokkan bangun datar.</p>
+    </div>
+  </div>
+
+  <div class="sim-tabs">
+    <button class="sim-tab active" data-pane="p1"><svg width="22" height="22" viewBox="0 0 40 40"><use href="#i-kaca"/></svg> Jelajah Bangun</button>
+    <button class="sim-tab" data-pane="p2"><svg width="22" height="22" viewBox="0 0 40 40"><use href="#i-ukur"/></svg> Lab Keliling & Luas</button>
+    <button class="sim-tab" data-pane="p3"><svg width="22" height="22" viewBox="0 0 40 40"><use href="#i-tangan"/></svg> Seret & Kelompokkan</button>
+    <button class="sim-tab" data-pane="p4"><svg width="22" height="22" viewBox="0 0 40 40"><use href="#i-kartu"/></svg> Permainan Memori</button>
+  </div>
+
+  <!-- PANE 1 : EKSPLORER -->
+  <div class="sim-pane active" id="pane-p1">
+    <div class="card">
+      <div class="chips" id="expChips"></div>
+      <div class="explorer">
+        <div>
+          <div class="stage">
+            <svg id="expSvg" viewBox="0 0 220 220"></svg>
+          </div>
+          <div class="toggle-row">
+            <button class="btn sm t" data-tog="sisi">Tampilkan Sisi</button>
+            <button class="btn sm o" data-tog="sudut">Tampilkan Sudut</button>
+            <button class="btn sm v" data-tog="simetri">Sumbu Simetri</button>
+            <button class="btn sm y" data-tog="diagonal">Diagonal</button>
+            <button class="btn sm g" data-tog="jalan">Jalan Keliling</button>
+          </div>
+          <div style="margin-top:12px" class="slider-box">
+            <label>Putar bangun <span id="rotVal">0°</span></label>
+            <input type="range" id="rotRange" min="0" max="360" value="0">
+          </div>
+        </div>
+        <div>
+          <h3 id="expName" style="font-size:26px">Persegi</h3>
+          <p id="expDesc" style="margin-top:0"></p>
+          <div class="info-grid" id="expInfo"></div>
+          <div class="btn-row" style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn sm y" id="expReset">Kembalikan Semua</button>
+            <button class="btn sm p" id="expAll">Tampilkan Semua</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANE 2 : LAB KELILING & LUAS -->
+  <div class="sim-pane" id="pane-p2">
+    <div class="card">
+      <div class="chips" id="labChips"></div>
+      <div class="lab">
+        <div>
+          <div class="stage">
+            <svg id="labSvg" viewBox="0 0 260 260"></svg>
+          </div>
+        </div>
+        <div>
+          <div id="labSliders"></div>
+          <div class="formula" id="labRumus"></div>
+          <div class="result-grid">
+            <div class="res k"><span>Keliling</span><b id="labK">0</b></div>
+            <div class="res l"><span>Luas</span><b id="labL">0</b></div>
+          </div>
+          <div class="say" style="margin-top:14px">
+            <svg viewBox="0 0 120 130"><use href="#m-maskot"/></svg>
+            <p id="labSay">Geser-geser angkanya dan lihat apa yang terjadi pada keliling dan luasnya.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANE 3 : DRAG & DROP -->
+  <div class="sim-pane" id="pane-p3">
+    <div class="card">
+      <div class="quiz-top">
+        <p style="margin:0;flex:1;min-width:220px">
+          <b>Seret</b> setiap bangun datar ke kotak yang paling tepat. Kalau benar, kamu dapat 10 poin!
+        </p>
+        <div class="badge">Skor: <b id="ddScore">0</b></div>
+        <div class="badge">Sisa: <b id="ddLeft">0</b></div>
+        <button class="btn sm y" id="ddReset">Ulangi</button>
+      </div>
+      <div class="dd-area">
+        <div class="dd-items" id="ddItems"></div>
+        <div class="dd-bins" id="ddBins"></div>
+      </div>
+      <div class="fb" id="ddFb"></div>
+    </div>
+  </div>
+
+  <!-- PANE 4 : MEMORI -->
+  <div class="sim-pane" id="pane-p4">
+    <div class="card">
+      <div class="quiz-top">
+        <p style="margin:0;flex:1;min-width:200px">
+          Buka dua kartu. Pasangkan <b>gambar bangun</b> dengan <b>nama bangun</b>-nya!
+        </p>
+        <div class="badge">Langkah: <b id="memMoves">0</b></div>
+        <div class="badge">Pasangan: <b id="memPairs">0</b>/8</div>
+        <button class="btn sm y" id="memReset">Acak Ulang</button>
+      </div>
+      <div class="mem" id="memGrid"></div>
+      <div class="fb" id="memFb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KUIS ================= -->
+<section class="section wrap" id="kuis">
+  <div class="sec-head">
+    <div class="sec-num" style="background:var(--purple)">3</div>
+    <div>
+      <h2>Kuis Ciri-Ciri Bangun Datar</h2>
+      <p>10 soal acak. Pilih jawaban yang paling tepat, lalu lihat pembahasannya.</p>
+    </div>
+  </div>
+  <div class="card" id="quizCard">
+    <div class="quiz-top">
+      <div class="progress"><i id="qBar"></i></div>
+      <div class="badge">Soal <b id="qNum">1</b>/10</div>
+      <div class="badge">Skor <b id="qScore">0</b></div>
+    </div>
+    <div id="qBox"></div>
+  </div>
+</section>
+
+<!-- ================= PETUNJUK ================= -->
+<section class="section wrap" id="petunjuk">
+  <div class="sec-head">
+    <div class="sec-num" style="background:var(--orange)">4</div>
+    <div>
+      <h2>Petunjuk Penggunaan</h2>
+      <p>Untuk siswa, guru, dan orang tua.</p>
+    </div>
+  </div>
+  <div class="grid g3">
+    <div class="card">
+      <h3 style="color:var(--pink)">Untuk Siswa</h3>
+      <ul style="padding-left:20px;margin:0">
+        <li>Mulai dari menu <b>Materi</b>, klik bangun datar untuk membaca ciri-cirinya.</li>
+        <li>Lanjut ke <b>Simulasi</b> untuk mencoba sendiri.</li>
+        <li>Uji pemahaman lewat <b>Kuis</b>. Coba sampai skormu 100!</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--teal)">Untuk Guru</h3>
+      <ul style="padding-left:20px;margin:0">
+        <li>Gunakan <b>Jelajah Bangun</b> saat menjelaskan sisi, sudut, diagonal, dan sumbu simetri di depan kelas.</li>
+        <li><b>Lab Keliling & Luas</b> cocok untuk menanamkan konsep rumus lewat percobaan.</li>
+        <li><b>Seret & Kelompokkan</b> bisa jadi latihan pengelompokan sifat bangun.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--purple)">Yang Dipelajari</h3>
+      <ul style="padding-left:20px;margin:0">
+        <li>Ciri-ciri persegi, persegi panjang, segitiga, lingkaran, jajar genjang, belah ketupat, layang-layang, trapesium.</li>
+        <li>Sisi, sudut, sisi sejajar, sumbu simetri, diagonal.</li>
+        <li>Keliling dan luas bangun datar sederhana.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="wrap">
+    <div class="bag">
+      <span>Matematika SD</span><span>Ciri-Ciri Bangun Datar</span><span>Belajar Sambil Bermain</span>
+    </div>
+    <p><b>Petualangan Bangun Datar</b> - media pembelajaran interaktif buatan sendiri untuk siswa SD.</p>
+    <p>Koko si Persegi, Sisi si Segitiga, dan Lala si Lingkaran menemanimu belajar.</p>
+  </div>
+</div>
+
+<!-- ================= MODAL ================= -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-head" id="mHead">
+      <svg width="44" height="44" viewBox="0 0 120 130"><use href="#m-maskot"/></svg>
+      <h3 id="mTitle">Judul</h3>
+      <button class="btn sm x-btn" id="mClose">Tutup</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   PETUALANGAN BANGUN DATAR
+   Seluruh logika: data, render SVG, simulasi, permainan, kuis
+   ============================================================ */
+(function(){
+"use strict";
+
+/* ---------- DATA BANGUN DATAR ---------- */
+var SIDEC = ['#e6194b','#2ecc40','#4363d8','#f58231','#911eb4','#008b8b','#b8860b','#00b8a9'];
+
+var SHAPES = {
+  persegi:{
+    nama:'Persegi', singkat:'Persegi', warna:'#ff6b9d',
+    pts:[[40,40],[180,40],[180,180],[40,180]],
+    sim:[[[110,40],[110,180]],[[40,110],[180,110]],[[40,40],[180,180]],[[180,40],[40,180]]],
+    diag:[[[40,40],[180,180]],[[180,40],[40,180]]],
+    tag:['4 sisi sama panjang','4 sudut siku-siku','4 sumbu simetri'],
+    desc:'Persegi adalah segi empat yang keempat sisinya sama panjang dan keempat sudutnya siku-siku. Persegi juga sering disebut bujur sangkar.',
+    ciri:[
+      'Mempunyai 4 sisi yang sama panjang',
+      'Mempunyai 4 sudut siku-siku, masing-masing 90 derajat',
+      'Mempunyai 4 titik sudut',
+      'Sisi yang berhadapan sejajar',
+      'Mempunyai 2 diagonal yang sama panjang dan berpotongan tegak lurus',
+      'Mempunyai 4 sumbu simetri lipat'
+    ],
+    rumus:'Keliling = 4 x s &nbsp;&nbsp;|&nbsp;&nbsp; Luas = s x s'
+  },
+  persegiPanjang:{
+    nama:'Persegi Panjang', singkat:'Persegi Panjang', warna:'#4d96ff',
+    pts:[[20,60],[200,60],[200,160],[20,160]],
+    sim:[[[110,60],[110,160]],[[20,110],[200,110]]],
+    diag:[[[20,60],[200,160]],[[200,60],[20,160]]],
+    tag:['4 sisi','4 sudut siku-siku','2 sumbu simetri'],
+    desc:'Persegi panjang adalah segi empat yang sisi-sisi yang berhadapan sama panjang dan sejajar, serta keempat sudutnya siku-siku.',
+    ciri:[
+      'Mempunyai 4 sisi',
+      'Sisi yang berhadapan sama panjang dan sejajar',
+      'Mempunyai 4 sudut siku-siku',
+      'Mempunyai 2 diagonal yang sama panjang, berpotongan di titik tengah',
+      'Mempunyai 2 sumbu simetri lipat'
+    ],
+    rumus:'Keliling = 2 x (p + l) &nbsp;&nbsp;|&nbsp;&nbsp; Luas = p x l'
+  },
+  segitigaSS:{
+    nama:'Segitiga Sama Sisi', singkat:'Segitiga Sama Sisi', warna:'#22c1c3',
+    pts:[[110,35],[185,165],[35,165]],
+    sim:[[[110,35],[110,165]],[[110,35],[157,100]],[[110,35],[63,100]]],
+    diag:[],
+    tag:['3 sisi sama panjang','3 sudut 60°','3 sumbu simetri'],
+    desc:'Segitiga sama sisi adalah segitiga yang ketiga sisinya sama panjang, sehingga ketiga sudutnya juga sama besar.',
+    ciri:[
+      'Mempunyai 3 sisi yang sama panjang',
+      'Mempunyai 3 sudut yang sama besar, masing-masing 60 derajat',
+      'Mempunyai 3 titik sudut',
+      'Mempunyai 3 sumbu simetri lipat'
+    ],
+    rumus:'Keliling = 3 x s &nbsp;&nbsp;|&nbsp;&nbsp; Luas = 1/2 x alas x tinggi'
+  },
+  segitigaSK:{
+    nama:'Segitiga Sama Kaki', singkat:'Segitiga Sama Kaki', warna:'#3ddc84',
+    pts:[[110,25],[190,170],[30,170]],
+    sim:[[[110,25],[110,170]]],
+    diag:[],
+    tag:['3 sisi','2 sisi sama panjang','1 sumbu simetri'],
+    desc:'Segitiga sama kaki adalah segitiga yang dua sisinya sama panjang, sehingga dua sudut di alasnya juga sama besar.',
+    ciri:[
+      'Mempunyai 3 sisi, dua di antaranya sama panjang',
+      'Mempunyai 2 sudut yang sama besar, yaitu sudut di alas',
+      'Mempunyai 1 sumbu simetri lipat',
+      'Jumlah ketiga sudutnya 180 derajat'
+    ],
+    rumus:'Keliling = sisi + sisi + alas &nbsp;&nbsp;|&nbsp;&nbsp; Luas = 1/2 x alas x tinggi'
+  },
+  segitigaSiku:{
+    nama:'Segitiga Siku-Siku', singkat:'Segitiga Siku-Siku', warna:'#ff8c42',
+    pts:[[35,60],[35,180],[195,180]],
+    sim:[],
+    diag:[],
+    tag:['3 sisi','1 sudut 90°','0 sumbu simetri'],
+    desc:'Segitiga siku-siku adalah segitiga yang salah satu sudutnya merupakan sudut siku-siku, yaitu 90 derajat.',
+    ciri:[
+      'Mempunyai 3 sisi: 2 sisi siku-siku dan 1 sisi miring',
+      'Mempunyai 1 sudut siku-siku, yaitu 90 derajat',
+      'Sisi terpanjang disebut sisi miring atau hipotenusa',
+      'Jumlah ketiga sudutnya 180 derajat'
+    ],
+    rumus:'Keliling = a + b + c &nbsp;&nbsp;|&nbsp;&nbsp; Luas = 1/2 x alas x tinggi'
+  },
+  lingkaran:{
+    nama:'Lingkaran', singkat:'Lingkaran', warna:'#ff4d6d', bunder:true, r:90,
+    pts:[],
+    sim:[[[20,110],[200,110]],[[110,20],[110,200]],[[46,46],[174,174]],[[174,46],[46,174]]],
+    diag:[],
+    tag:['1 sisi lengkung','tanpa sudut','sumbu simetri tak terhingga'],
+    desc:'Lingkaran adalah bangun datar yang dibatasi oleh sebuah garis lengkung. Setiap titik pada lingkaran berjarak sama dari titik pusatnya.',
+    ciri:[
+      'Mempunyai 1 sisi berupa garis lengkung',
+      'Tidak mempunyai sudut dan titik sudut',
+      'Mempunyai titik pusat',
+      'Mempunyai jari-jari (r) dan diameter (d), dengan d = 2 x r',
+      'Mempunyai sumbu simetri lipat yang tak terhingga banyaknya'
+    ],
+    rumus:'Keliling = 2 x phi x r = phi x d &nbsp;&nbsp;|&nbsp;&nbsp; Luas = phi x r x r'
+  },
+  jajarGenjang:{
+    nama:'Jajar Genjang', singkat:'Jajar Genjang', warna:'#7c5cff',
+    pts:[[60,45],[200,45],[160,175],[20,175]],
+    sim:[],
+    diag:[[[60,45],[160,175]],[[200,45],[20,175]]],
+    tag:['4 sisi','sisi berhadapan sejajar','0 sumbu simetri'],
+    desc:'Jajar genjang adalah segi empat yang sisi-sisi yang berhadapan sejajar dan sama panjang, tetapi sudut-sudutnya bukan siku-siku.',
+    ciri:[
+      'Mempunyai 4 sisi',
+      'Sisi yang berhadapan sejajar dan sama panjang',
+      'Sudut yang berhadapan sama besar',
+      'Jumlah dua sudut yang berdekatan adalah 180 derajat',
+      'Mempunyai 2 diagonal, tetapi tidak sama panjang',
+      'Tidak mempunyai sumbu simetri lipat'
+    ],
+    rumus:'Keliling = 2 x (a + b) &nbsp;&nbsp;|&nbsp;&nbsp; Luas = alas x tinggi'
+  },
+  belahKetupat:{
+    nama:'Belah Ketupat', singkat:'Belah Ketupat', warna:'#ffd93d',
+    pts:[[110,45],[196,110],[110,175],[24,110]],
+    sim:[[[110,45],[110,175]],[[24,110],[196,110]]],
+    diag:[[[110,45],[110,175]],[[24,110],[196,110]]],
+    tag:['4 sisi sama panjang','0 sudut siku-siku','2 sumbu simetri'],
+    desc:'Belah ketupat adalah segi empat yang keempat sisinya sama panjang, tetapi sudut-sudutnya bukan siku-siku.',
+    ciri:[
+      'Mempunyai 4 sisi yang sama panjang',
+      'Sudut yang berhadapan sama besar',
+      'Sisi yang berhadapan sejajar',
+      'Kedua diagonalnya berpotongan tegak lurus dan saling membagi dua sama panjang',
+      'Mempunyai 2 sumbu simetri lipat, yaitu kedua diagonalnya'
+    ],
+    rumus:'Keliling = 4 x s &nbsp;&nbsp;|&nbsp;&nbsp; Luas = 1/2 x d1 x d2'
+  },
+  layangLayang:{
+    nama:'Layang-layang', singkat:'Layang-layang', warna:'#ff9ff3',
+    pts:[[110,25],[160,95],[110,190],[60,95]],
+    sim:[[[110,25],[110,190]]],
+    diag:[[[110,25],[110,190]],[[60,95],[160,95]]],
+    tag:['4 sisi','2 pasang sisi sama panjang','1 sumbu simetri'],
+    desc:'Layang-layang adalah segi empat yang mempunyai dua pasang sisi yang berdekatan dan sama panjang.',
+    ciri:[
+      'Mempunyai 4 sisi',
+      'Mempunyai 2 pasang sisi yang berdekatan sama panjang',
+      'Sepasang sudut yang berhadapan sama besar',
+      'Salah satu diagonalnya merupakan sumbu simetri',
+      'Mempunyai 1 sumbu simetri lipat'
+    ],
+    rumus:'Keliling = jumlah semua sisi &nbsp;&nbsp;|&nbsp;&nbsp; Luas = 1/2 x d1 x d2'
+  },
+  trapesium:{
+    nama:'Trapesium', singkat:'Trapesium', warna:'#f7b731',
+    pts:[[65,55],[155,55],[200,175],[20,175]],
+    sim:[[[110,55],[110,175]]],
+    diag:[[[65,55],[200,175]],[[155,55],[20,175]]],
+    tag:['4 sisi','sepasang sisi sejajar','1 sumbu simetri'],
+    desc:'Trapesium adalah segi empat yang mempunyai sepasang sisi berhadapan yang sejajar.',
+    ciri:[
+      'Mempunyai 4 sisi',
+      'Mempunyai sepasang sisi berhadapan yang sejajar',
+      'Jumlah keempat sudutnya 360 derajat',
+      'Trapesium sama kaki mempunyai 1 sumbu simetri lipat'
+    ],
+    rumus:'Keliling = jumlah semua sisi &nbsp;&nbsp;|&nbsp;&nbsp; Luas = 1/2 x (a + b) x t'
+  }
+};
+var ORDER = ['persegi','persegiPanjang','segitigaSS','segitigaSK','segitigaSiku','lingkaran','jajarGenjang','belahKetupat','layangLayang','trapesium'];
+
+/* ---------- MATEMATIKA DASAR ---------- */
+function dist(a,b){ return Math.hypot(b[0]-a[0], b[1]-a[1]); }
+function pathD(pts){ return 'M' + pts.map(function(p){return p[0]+','+p[1];}).join('L') + 'Z'; }
+function centroid(pts){
+  var x=0,y=0; pts.forEach(function(p){x+=p[0];y+=p[1];});
+  return [x/pts.length, y/pts.length];
+}
+function angleAt(p,c,n){
+  var v1=[p[0]-c[0], p[1]-c[1]], v2=[n[0]-c[0], n[1]-c[1]];
+  var dot = v1[0]*v2[0] + v1[1]*v2[1];
+  var crs = v1[0]*v2[1] - v1[1]*v2[0];
+  var deg = Math.abs(Math.atan2(crs, dot) * 180 / Math.PI);
+  var t1 = Math.atan2(v1[1], v1[0]);
+  var delta = Math.atan2(crs, dot);
+  return {deg:deg, t1:t1, delta:delta};
+}
+function groupLengths(pts){
+  var out=[], used={};
+  for(var i=0;i<pts.length;i++){
+    var a=pts[i], b=pts[(i+1)%pts.length];
+    var L = Math.round(dist(a,b)*10)/10;
+    var gi=-1;
+    for(var j=0;j<out.length;j++){ if(Math.abs(out[j]-L)<0.6){ gi=j; break; } }
+    if(gi<0){ out.push(L); gi=out.length-1; }
+    used[i]=gi;
+  }
+  return {groups:out, map:used};
+}
+function parallelPairs(pts){
+  var n=pts.length, c=0;
+  for(var i=0;i<n;i++){
+    for(var j=i+2;j<n;j++){
+      if(i===0 && j===n-1) continue;
+      var a=pts[i], b=pts[(i+1)%n], d=pts[j], e=pts[(j+1)%n];
+      var u=[b[0]-a[0], b[1]-a[1]], v=[e[0]-d[0], e[1]-d[1]];
+      var crs = Math.abs(u[0]*v[1]-u[1]*v[0]);
+      var m = Math.hypot(u[0],u[1])*Math.hypot(v[0],v[1]);
+      if(m>0 && crs/m < 0.02) c++;
+    }
+  }
+  return c;
+}
+function analyze(key){
+  var s = SHAPES[key];
+  if(s.bunder) return {bunder:true, n:1, siku:0, par:0, groups:1, angles:[], total:0, equalInfo:'1 sisi lengkung'};
+  var n = s.pts.length, angles=[], siku=0, rawSum=0;
+  for(var i=0;i<n;i++){
+    var p = s.pts[(i-1+n)%n], c = s.pts[i], q = s.pts[(i+1)%n];
+    var A = angleAt(p,c,q);
+    rawSum += A.deg;
+    angles.push(Math.round(A.deg));
+    if(Math.abs(A.deg-90) < 1.5) siku++;
+  }
+  var g = groupLengths(s.pts);
+  return {bunder:false, n:n, siku:siku, par:parallelPairs(s.pts), groups:g.groups.length, angles:angles,
+    total:Math.round(rawSum), equalInfo:g.groups.length===1?'semua sisi sama panjang':g.groups.length+' kelompok ukuran sisi'};
+}
+
+/* ---------- PEMBUAT SVG ---------- */
+function shapeSVG(key, o){
+  o = o || {};
+  var s = SHAPES[key];
+  var sw = o.sw || 6;
+  var show = o.show || {};
+  var labels = o.labels !== false;
+  var rot = o.rot || 0;
+  var g = '';
+
+  if(s.bunder){
+    g += '<circle cx="110" cy="110" r="90" fill="'+s.warna+'" fill-opacity=".20" stroke="'+s.warna+'" stroke-width="'+sw+'" class="walkpath"/>';
+    if(show.sisi || show.diagonal){
+      g += '<line x1="110" y1="110" x2="200" y2="110" stroke="#e6194b" stroke-width="'+(sw-1)+'" stroke-linecap="round"/>';
+      g += '<line x1="20" y1="110" x2="200" y2="110" stroke="#4363d8" stroke-width="'+(sw-1)+'" stroke-linecap="round"/>';
+      g += '<circle cx="110" cy="110" r="5" fill="#2b2b4a"/>';
+      if(labels){
+        g += '<text x="155" y="103" font-size="15" font-weight="bold" fill="#e6194b" text-anchor="middle">r</text>';
+        g += '<text x="110" y="103" font-size="15" font-weight="bold" fill="#4363d8" text-anchor="middle">d</text>';
+        g += '<text x="110" y="132" font-size="13" font-weight="bold" fill="#2b2b4a" text-anchor="middle">pusat</text>';
+      }
+    }
+  } else {
+    g += '<path d="'+pathD(s.pts)+'" fill="'+s.warna+'" fill-opacity=".20" stroke="'+s.warna+'" stroke-width="'+sw+'" stroke-linejoin="round" class="walkpath"/>';
+  }
+
+  /* diagonal */
+  if(show.diagonal && s.diag && s.diag.length){
+    s.diag.forEach(function(d){
+      g += '<line x1="'+d[0][0]+'" y1="'+d[0][1]+'" x2="'+d[1][0]+'" y2="'+d[1][1]+'" stroke="#6b6b8d" stroke-width="3.5" stroke-dasharray="9 7"/>';
+    });
+    if(labels) g += '<text x="110" y="212" font-size="13" font-weight="bold" fill="#6b6b8d" text-anchor="middle">garis putus-putus = diagonal</text>';
+  }
+
+  /* sumbu simetri */
+  if(show.simetri && s.sim && s.sim.length){
+    s.sim.forEach(function(d){
+      g += '<line x1="'+d[0][0]+'" y1="'+d[0][1]+'" x2="'+d[1][0]+'" y2="'+d[1][1]+'" stroke="#7c5cff" stroke-width="3.5" stroke-dasharray="14 6 4 6"/>';
+    });
+    if(labels){
+      var t = s.bunder ? 'sumbu simetri tak terhingga' : s.sim.length + ' sumbu simetri';
+      g += '<text x="110" y="16" font-size="14" font-weight="bold" fill="#7c5cff" text-anchor="middle">'+t+'</text>';
+    }
+  }
+
+  /* sisi */
+  if(show.sisi && !s.bunder){
+    var gl = groupLengths(s.pts);
+    var cen = centroid(s.pts);
+    s.pts.forEach(function(a,i){
+      var b = s.pts[(i+1)%s.pts.length];
+      var col = SIDEC[gl.map[i] % SIDEC.length];
+      g += '<line x1="'+a[0]+'" y1="'+a[1]+'" x2="'+b[0]+'" y2="'+b[1]+'" stroke="'+col+'" stroke-width="'+Math.max(7,sw+3)+'" stroke-linecap="round" opacity=".95"/>';
+      var mx=(a[0]+b[0])/2, my=(a[1]+b[1])/2;
+      var dx=mx-cen[0], dy=my-cen[1], m=Math.hypot(dx,dy)||1;
+      var lx=mx+dx/m*19, ly=my+dy/m*19;
+      if(labels){
+        g += '<circle cx="'+lx+'" cy="'+ly+'" r="11" fill="#fff" stroke="'+col+'" stroke-width="3"/>';
+        g += '<text x="'+lx+'" y="'+(ly+4.5)+'" font-size="13" font-weight="bold" fill="'+col+'" text-anchor="middle">'+(i+1)+'</text>';
+      }
+    });
+    if(labels) g += '<text x="110" y="214" font-size="12" font-weight="bold" fill="#6b6b8d" text-anchor="middle">warna sama = panjangnya sama</text>';
+  }
+
+  /* sudut */
+  if(show.sudut && !s.bunder){
+    var n2 = s.pts.length, R = 27;
+    for(var i2=0;i2<n2;i2++){
+      var p2 = s.pts[(i2-1+n2)%n2], c2 = s.pts[i2], q2 = s.pts[(i2+1)%n2];
+      var A2 = angleAt(p2,c2,q2);
+      var u1=[p2[0]-c2[0], p2[1]-c2[1]], l1=Math.hypot(u1[0],u1[1]); u1=[u1[0]/l1,u1[1]/l1];
+      var u2=[q2[0]-c2[0], q2[1]-c2[1]], l2=Math.hypot(u2[0],u2[1]); u2=[u2[0]/l2,u2[1]/l2];
+      var sx=c2[0]+u1[0]*R, sy=c2[1]+u1[1]*R;
+      var ex=c2[0]+u2[0]*R, ey=c2[1]+u2[1]*R;
+      var swp = A2.delta > 0 ? 1 : 0;
+      var col2 = Math.abs(A2.deg-90)<1.5 ? '#ff5757' : '#2ecc40';
+      g += '<path d="M'+sx.toFixed(1)+','+sy.toFixed(1)+' A'+R+','+R+' 0 0 '+swp+' '+ex.toFixed(1)+','+ey.toFixed(1)+'" fill="none" stroke="'+col2+'" stroke-width="4"/>';
+      if(Math.abs(A2.deg-90)<1.5){
+        g += '<rect x="'+(sx-4)+'" y="'+(sy-4)+'" width="8" height="8" fill="none" stroke="#ff5757" stroke-width="2.5" transform="rotate(0)"/>';
+      }
+      var bm = A2.t1 + A2.delta/2;
+      var tx = c2[0] + Math.cos(bm)*(R+16), ty = c2[1] + Math.sin(bm)*(R+16);
+      if(labels){
+        g += '<rect x="'+(tx-17)+'" y="'+(ty-11)+'" width="34" height="20" rx="7" fill="#fff" stroke="'+col2+'" stroke-width="2.5"/>';
+        g += '<text x="'+tx+'" y="'+(ty+4)+'" font-size="12.5" font-weight="bold" fill="'+col2+'" text-anchor="middle">'+Math.round(A2.deg)+'°</text>';
+      }
+    }
+  }
+
+  /* titik sudut */
+  if(!s.bunder){
+    var cen2 = centroid(s.pts);
+    var huruf = ['A','B','C','D','E','F'];
+    s.pts.forEach(function(p,i){
+      g += '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(labels?6.5:5)+'" fill="#fff" stroke="#2b2b4a" stroke-width="3.5"/>';
+      if(labels){
+        var dx=p[0]-cen2[0], dy=p[1]-cen2[1], m=Math.hypot(dx,dy)||1;
+        var lx=p[0]+dx/m*22, ly=p[1]+dy/m*22;
+        g += '<text x="'+lx+'" y="'+(ly+5)+'" font-size="15" font-weight="bold" fill="#2b2b4a" text-anchor="middle">'+huruf[i]+'</text>';
+      }
+    });
+  }
+
+  var inner = '<g transform="rotate('+rot+' 110 110)" id="expG">'+g+'</g>';
+  if(show.jalan){
+    inner += '<circle id="walkDot" cx="110" cy="110" r="9" fill="#ff6b9d" stroke="#2b2b4a" stroke-width="3.5"/>';
+  }
+  return '<svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">'+inner+'</svg>';
+}
+
+/* ---------- SUARA ---------- */
+var actx=null, soundOn=true;
+function beep(f,d,type,vol){
+  if(!soundOn) return;
+  try{
+    actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==='suspended') actx.resume();
+    var o=actx.createOscillator(), g=actx.createGain();
+    o.type=type||'sine'; o.frequency.value=f;
+    g.gain.value = vol||0.12;
+    o.connect(g); g.connect(actx.destination);
+    var t=actx.currentTime;
+    g.gain.setValueAtTime(vol||0.12, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t+(d||0.12));
+    o.start(t); o.stop(t+(d||0.16));
+  }catch(e){}
+}
+function nadaBenar(){ [523,659,784].forEach(function(f,i){ setTimeout(function(){beep(f,0.16,'triangle',0.13);}, i*95); }); }
+function nadaSalah(){ [330,250].forEach(function(f,i){ setTimeout(function(){beep(f,0.2,'sawtooth',0.1);}, i*130); }); }
+function nadaMenang(){ [523,659,784,1047,1319].forEach(function(f,i){ setTimeout(function(){beep(f,0.2,'triangle',0.13);}, i*110); }); }
+
+/* ---------- KONFETI ---------- */
+var CF = ['#ff6b9d','#22c1c3','#ffd93d','#7c5cff','#3ddc84','#ff8c42','#4d96ff'];
+function confetti(n){
+  n = n || 70;
+  var box = document.createElement('div');
+  box.className='confetti';
+  document.body.appendChild(box);
+  for(var i=0;i<n;i++){
+    var d=document.createElement('i');
+    d.className='cf';
+    d.style.left = (Math.random()*100)+'%';
+    d.style.background = CF[Math.floor(Math.random()*CF.length)];
+    d.style.animationDuration = (1.6+Math.random()*1.6)+'s';
+    d.style.animationDelay = (Math.random()*0.5)+'s';
+    d.style.borderRadius = Math.random()>0.5 ? '50%' : '3px';
+    box.appendChild(d);
+  }
+  setTimeout(function(){ box.remove(); }, 4200);
+}
+
+/* ---------- BINTANG (gambar SVG, bukan emoji) ---------- */
+function starSVG(fill){
+  return '<svg viewBox="0 0 24 24" width="40" height="40" style="display:inline-block;margin:0 2px;vertical-align:middle">'+
+    '<path d="M12 2.2l2.9 6.1 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.1 1.3-6.5L2.5 9.1l6.6-.8z" '+
+    'fill="'+fill+'" stroke="#2b2b4a" stroke-width="1.6" stroke-linejoin="round"/></svg>';
+}
+function barisBintang(n, total){
+  var out='';
+  for(var i=0;i<(total||5);i++) out += starSVG(i<n ? '#ffd93d' : '#e6e6f0');
+  return out;
+}
+
+/* ---------- MATERI ---------- */
+var materiGrid = document.getElementById('materiGrid');
+ORDER.forEach(function(k){
+  var s = SHAPES[k];
+  var d = document.createElement('div');
+  d.className='shape-card';
+  d.innerHTML =
+    '<div class="sc-top" style="background:'+s.warna+'22">'+shapeSVG(k,{sw:7,labels:false})+'</div>'+
+    '<div class="sc-name">'+s.nama+'</div>'+
+    '<div class="sc-sub">Klik untuk melihat ciri-cirinya</div>'+
+    '<div class="sc-tags">'+s.tag.map(function(t){return '<span class="tag" style="background:'+s.warna+'33">'+t+'</span>';}).join('')+'</div>';
+  d.addEventListener('click', function(){ bukaModal(k); });
+  materiGrid.appendChild(d);
+});
+
+/* ---------- MODAL ---------- */
+var modal = document.getElementById('modal');
+function bukaModal(k){
+  var s = SHAPES[k], a = analyze(k);
+  document.getElementById('mTitle').textContent = s.nama;
+  document.getElementById('mBody').innerHTML =
+    '<div><div class="stage" style="min-height:250px">'+shapeSVG(k,{sw:7,labels:true})+'</div>'+
+      '<div class="fact-row">'+
+        '<span class="fact">Sisi: '+(a.bunder?'1 lengkung':a.n)+'</span>'+
+        '<span class="fact">Sudut: '+(a.bunder?'0':a.n)+'</span>'+
+        '<span class="fact">Siku-siku: '+(a.bunder?'0':a.siku)+'</span>'+
+        '<span class="fact">Sisi sejajar: '+a.par+' pasang</span>'+
+        '<span class="fact">Sumbu simetri: '+(a.bunder?'~':s.sim.length)+'</span>'+
+      '</div>'+
+      '<div class="formula">'+s.rumus+'</div>'+
+    '</div>'+
+    '<div><p style="margin-top:0">'+s.desc+'</p>'+
+      '<h4 style="margin-bottom:6px">Ciri-cirinya:</h4>'+
+      '<ul>'+s.ciri.map(function(c){return '<li>'+c+'</li>';}).join('')+'</ul>'+
+      '<div class="say" style="margin-top:12px"><svg viewBox="0 0 120 130"><use href="#m-maskot"/></svg><p>Sudut-sudut pada '+s.nama.toLowerCase()+(a.bunder?' tidak ada':' adalah '+a.angles.join('°, ')+'°')+'. Totalnya '+a.total+'°. Keren, ya!</p></div>'+
+    '</div>';
+  modal.classList.add('open');
+  beep(660,0.12,'sine',0.1);
+}
+document.getElementById('mClose').addEventListener('click', function(){ modal.classList.remove('open'); });
+modal.addEventListener('click', function(e){ if(e.target===modal) modal.classList.remove('open'); });
+
+/* ============================================================
+   SIMULASI
+   ============================================================ */
+document.querySelectorAll('.sim-tab').forEach(function(b){
+  b.addEventListener('click', function(){
+    document.querySelectorAll('.sim-tab').forEach(function(x){x.classList.remove('active');});
+    document.querySelectorAll('.sim-pane').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active');
+    document.getElementById('pane-'+b.dataset.pane).classList.add('active');
+    beep(520,0.08,'sine',0.08);
+    if(b.dataset.pane==='p1') gambarExplorer();
+    if(b.dataset.pane==='p2') gambarLab();
+  });
+});
+
+/* ---------- SIM 1: JELAJAH BANGUN ---------- */
+var expKey='persegi', expRot=0, walkRAF=null;
+var expShow = {sisi:false, sudut:false, simetri:false, diagonal:false, jalan:false};
+var expChips = document.getElementById('expChips');
+ORDER.forEach(function(k){
+  var b=document.createElement('button');
+  b.className='chip'+(k===expKey?' on':'');
+  b.textContent=SHAPES[k].singkat;
+  b.dataset.k=k;
+  b.addEventListener('click', function(){
+    expKey=k; expRot=0; document.getElementById('rotRange').value=0;
+    document.getElementById('rotVal').textContent='0°';
+    expChips.querySelectorAll('.chip').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on');
+    beep(480,0.08,'sine',0.08);
+    gambarExplorer();
+  });
+  expChips.appendChild(b);
+});
+
+function gambarExplorer(){
+  var svg = document.getElementById('expSvg');
+  svg.innerHTML = shapeSVG(expKey, {show:expShow, rot:expRot, sw:6});
+  if(walkRAF){ cancelAnimationFrame(walkRAF); walkRAF=null; }
+  if(expShow.jalan) mulaiJalan();
+
+  var s = SHAPES[expKey], a = analyze(expKey);
+  document.getElementById('expName').textContent = s.nama;
+  document.getElementById('expDesc').textContent = s.desc;
+  document.getElementById('expInfo').innerHTML =
+    '<div class="info-item"><b>'+(a.bunder?'1':a.n)+'</b><span>'+(a.bunder?'sisi lengkung':'sisi')+'</span></div>'+
+    '<div class="info-item"><b>'+(a.bunder?'0':a.n)+'</b><span>titik sudut</span></div>'+
+    '<div class="info-item"><b>'+(a.bunder?'0':a.siku)+'</b><span>sudut siku-siku</span></div>'+
+    '<div class="info-item"><b>'+a.par+'</b><span>pasang sisi sejajar</span></div>'+
+    '<div class="info-item"><b>'+(a.bunder?'~':s.sim.length)+'</b><span>sumbu simetri</span></div>'+
+    '<div class="info-item"><b>'+(a.bunder?'-':a.total+'°')+'</b><span>jumlah sudut</span></div>';
+  document.querySelectorAll('[data-tog]').forEach(function(b){
+    b.classList.toggle('btn-ghost', !expShow[b.dataset.tog]);
+    b.style.opacity = expShow[b.dataset.tog] ? '1' : '.72';
+  });
+}
+function mulaiJalan(){
+  var path = document.querySelector('#expSvg .walkpath');
+  var dot = document.getElementById('walkDot');
+  if(!path || !dot) return;
+  var total = path.getTotalLength(), t0 = performance.now();
+  function step(now){
+    var t = ((now - t0)/4200) % 1;
+    var p = path.getPointAtLength(t*total);
+    dot.setAttribute('cx', p.x);
+    dot.setAttribute('cy', p.y);
+    walkRAF = requestAnimationFrame(step);
+  }
+  walkRAF = requestAnimationFrame(step);
+}
+document.querySelectorAll('[data-tog]').forEach(function(b){
+  b.addEventListener('click', function(){
+    var k = b.dataset.tog;
+    expShow[k] = !expShow[k];
+    beep(expShow[k]?740:420, 0.09, 'sine', 0.09);
+    gambarExplorer();
+  });
+});
+document.getElementById('rotRange').addEventListener('input', function(e){
+  expRot = +e.target.value;
+  document.getElementById('rotVal').textContent = expRot + '°';
+  var g = document.querySelector('#expSvg #expG');
+  if(g) g.setAttribute('transform','rotate('+expRot+' 110 110)');
+});
+document.getElementById('expReset').addEventListener('click', function(){
+  expShow = {sisi:false,sudut:false,simetri:false,diagonal:false,jalan:false};
+  expRot=0; document.getElementById('rotRange').value=0; document.getElementById('rotVal').textContent='0°';
+  gambarExplorer();
+});
+document.getElementById('expAll').addEventListener('click', function(){
+  expShow = {sisi:true,sudut:true,simetri:true,diagonal:true,jalan:true};
+  gambarExplorer();
+});
+
+/* ---------- SIM 2: LAB KELILING & LUAS ---------- */
+var labKey='persegi';
+var labVal = {s:6, p:9, l:5, a:10, t:6, r:5};
+var labChips = document.getElementById('labChips');
+[['persegi','Persegi'],['persegiPanjang','Persegi Panjang'],['segitiga','Segitiga'],['lingkaran','Lingkaran']].forEach(function(x){
+  var b=document.createElement('button');
+  b.className='chip'+(x[0]===labKey?' on':'');
+  b.textContent=x[1]; b.dataset.k=x[0];
+  b.addEventListener('click', function(){
+    labKey=x[0];
+    labChips.querySelectorAll('.chip').forEach(function(y){y.classList.remove('on');});
+    b.classList.add('on'); beep(480,0.08,'sine',0.08);
+    gambarLab();
+  });
+  labChips.appendChild(b);
+});
+
+function slider(id, label, min, max, key){
+  return '<div class="slider-box"><label>'+label+' <span><b id="v-'+id+'">'+labVal[key]+'</b> cm</span></label>'+
+    '<input type="range" id="'+id+'" data-key="'+key+'" min="'+min+'" max="'+max+'" value="'+labVal[key]+'"></div>';
+}
+function gambarLab(){
+  var sl = document.getElementById('labSliders');
+  var html='';
+  if(labKey==='persegi') html = slider('rS','Panjang sisi (s)',1,12,'s');
+  else if(labKey==='persegiPanjang') html = slider('rP','Panjang (p)',1,14,'p') + slider('rL','Lebar (l)',1,14,'l');
+  else if(labKey==='segitiga') html = slider('rA','Alas (a)',2,14,'a') + slider('rT','Tinggi (t)',2,12,'t');
+  else html = slider('rR','Jari-jari (r)',1,9,'r');
+  sl.innerHTML = html;
+  sl.querySelectorAll('input[type=range]').forEach(function(inp){
+    inp.addEventListener('input', function(){
+      labVal[inp.dataset.key] = +inp.value;
+      document.getElementById('v-'+inp.id).textContent = inp.value;
+      hitungLab();
+    });
+  });
+  hitungLab();
+}
+function gridCells(cols, rows, unit, ox, oy, color){
+  var out='';
+  for(var j=0;j<rows;j++){
+    for(var i=0;i<cols;i++){
+      out += '<rect x="'+(ox+i*unit)+'" y="'+(oy+j*unit)+'" width="'+unit+'" height="'+unit+'" fill="'+
+        (((i+j)%2===0)?color:color+'88')+'" stroke="#ffffff" stroke-width="1.5"/>';
+    }
+  }
+  return out;
+}
+function hitungLab(){
+  var svg = document.getElementById('labSvg');
+  var g='', k=0, l=0, rumus='', pesan='';
+  var S = 0, P = 0;
+  if(labKey==='persegi'){
+    var s = labVal.s, unit = 200/s, ox = 30, oy = 30;
+    g += gridCells(s,s,unit,ox,oy,'#ffb3cd');
+    g += '<rect x="30" y="30" width="200" height="200" fill="none" stroke="#ff6b9d" stroke-width="6"/>';
+    g += '<text x="130" y="248" font-size="16" font-weight="bold" fill="#ff6b9d" text-anchor="middle">s = '+s+' cm</text>';
+    g += '<text x="20" y="140" font-size="16" font-weight="bold" fill="#ff6b9d" text-anchor="middle" transform="rotate(-90 20 140)">s = '+s+' cm</text>';
+    k = 4*s; l = s*s;
+    rumus = 'K = 4 x s = 4 x '+s+' = <b>'+k+' cm</b><br>L = s x s = '+s+' x '+s+' = <b>'+l+' cm2</b>';
+    pesan = 'Persegi bersisi '+s+' cm punya '+s+' baris kotak, tiap baris ada '+s+' kotak. Jadi luasnya '+s+' x '+s+' = '+l+' kotak persegi satuan.';
+  } else if(labKey==='persegiPanjang'){
+    var p = labVal.p, w = labVal.l;
+    var unit = Math.min(200/p, 200/w);
+    var pw = p*unit, ph = w*unit;
+    var ox = 130 - pw/2, oy = 130 - ph/2;
+    g += gridCells(p,w,unit,ox,oy,'#a9cbff');
+    g += '<rect x="'+ox+'" y="'+oy+'" width="'+pw+'" height="'+ph+'" fill="none" stroke="#4d96ff" stroke-width="6"/>';
+    g += '<text x="130" y="'+(oy+ph+22)+'" font-size="16" font-weight="bold" fill="#4d96ff" text-anchor="middle">p = '+p+' cm</text>';
+    g += '<text x="'+(ox-14)+'" y="130" font-size="16" font-weight="bold" fill="#4d96ff" text-anchor="middle" transform="rotate(-90 '+(ox-14)+' 130)">l = '+w+' cm</text>';
+    k = 2*(p+w); l = p*w;
+    rumus = 'K = 2 x (p + l) = 2 x ('+p+' + '+w+') = <b>'+k+' cm</b><br>L = p x l = '+p+' x '+w+' = <b>'+l+' cm2</b>';
+    pesan = 'Ada '+p+' kotak ke samping dan '+w+' kotak ke bawah. Jadi luasnya '+p+' x '+w+' = '+l+' kotak persegi satuan.';
+  } else if(labKey==='segitiga'){
+    var a = labVal.a, t = labVal.t;
+    var unit = Math.min(190/a, 190/t);
+    var bw = a*unit, bh = t*unit;
+    var ox = 130 - bw/2, oy = 130 + bh/2 - bh;
+    g += gridCells(a,t,unit,ox,oy,'#bff0ec');
+    g += '<rect x="'+ox+'" y="'+oy+'" width="'+bw+'" height="'+bh+'" fill="none" stroke="#9fd8d2" stroke-width="3" stroke-dasharray="8 5"/>';
+    g += '<path d="M'+ox+','+(oy+bh)+' L'+(ox+bw)+','+(oy+bh)+' L'+ox+','+oy+' Z" fill="#22c1c3" fill-opacity=".85" stroke="#22c1c3" stroke-width="6" stroke-linejoin="round"/>';
+    g += '<line x1="'+ox+'" y1="'+(oy+bh)+'" x2="'+ox+'" y2="'+oy+'" stroke="#ff5757" stroke-width="5" stroke-linecap="round"/>';
+    g += '<text x="'+(ox-12)+'" y="'+(oy+bh/2)+'" font-size="15" font-weight="bold" fill="#ff5757" text-anchor="middle" transform="rotate(-90 '+(ox-12)+' '+(oy+bh/2)+')">t = '+t+' cm</text>';
+    g += '<text x="130" y="'+(oy+bh+24)+'" font-size="16" font-weight="bold" fill="#22c1c3" text-anchor="middle">a = '+a+' cm</text>';
+    var c = Math.round(Math.hypot(a,t)*10)/10;
+    k = Math.round((a+t+c)*10)/10; l = (a*t)/2;
+    rumus = 'K = a + t + sisi miring = '+a+' + '+t+' + '+c+' = <b>'+k+' cm</b><br>L = 1/2 x a x t = 1/2 x '+a+' x '+t+' = <b>'+l+' cm2</b>';
+    pesan = 'Lihat kotak-kotaknya. Segitiga ini menempati setengah dari persegi panjang berukuran '+a+' x '+t+'. Jadi luasnya setengahnya, yaitu '+l+' kotak satuan.';
+  } else {
+    var r = labVal.r, PI = 3.14;
+    var unit = Math.min(95/r, 30);
+    var R = r*unit;
+    g += '<circle cx="130" cy="130" r="'+R+'" fill="#ffb3c0" fill-opacity=".35" stroke="#ff4d6d" stroke-width="6"/>';
+    for(var ang=0; ang<360; ang+=30){
+      var x1=130+Math.cos(ang*Math.PI/180)*R, y1=130+Math.sin(ang*Math.PI/180)*R;
+      g += '<line x1="130" y1="130" x2="'+x1+'" y2="'+y1+'" stroke="#ff4d6d" stroke-width="2" stroke-dasharray="4 6" opacity=".7"/>';
+    }
+    g += '<line x1="130" y1="130" x2="'+(130+R)+'" y2="130" stroke="#e6194b" stroke-width="5" stroke-linecap="round"/>';
+    g += '<circle cx="130" cy="130" r="5.5" fill="#2b2b4a"/>';
+    g += '<text x="'+(130+R/2)+'" y="124" font-size="16" font-weight="bold" fill="#e6194b" text-anchor="middle">r = '+r+' cm</text>';
+    g += '<text x="130" y="248" font-size="14" font-weight="bold" fill="#ff4d6d" text-anchor="middle">diameter (d) = 2 x r = '+(2*r)+' cm</text>';
+    k = Math.round(2*PI*r*100)/100; l = Math.round(PI*r*r*100)/100;
+    rumus = 'K = 2 x phi x r = 2 x 3,14 x '+r+' = <b>'+k+' cm</b><br>L = phi x r x r = 3,14 x '+r+' x '+r+' = <b>'+l+' cm2</b>';
+    pesan = 'Jari-jari '+r+' cm, berarti diameternya '+(2*r)+' cm. Lingkaran punya sumbu simetri yang tak terhingga banyaknya!';
+  }
+  svg.innerHTML = g;
+  document.getElementById('labRumus').innerHTML = rumus;
+  document.getElementById('labK').textContent = k + ' cm';
+  document.getElementById('labL').textContent = l + ' cm2';
+  document.getElementById('labSay').textContent = pesan;
+}
+
+/* ---------- SIM 3: SERET & KELOMPOKKAN ---------- */
+var BINS = [
+  {id:'b1', judul:'Punya 3 sisi', warna:'#22c1c3', test:function(k){ return !SHAPES[k].bunder && SHAPES[k].pts.length===3; }},
+  {id:'b2', judul:'Tidak punya sudut', warna:'#ff4d6d', test:function(k){ return !!SHAPES[k].bunder; }},
+  {id:'b3', judul:'4 sudut siku-siku', warna:'#4d96ff', test:function(k){ return !SHAPES[k].bunder && analyze(k).siku===4; }},
+  {id:'b4', judul:'4 sisi, sudutnya bukan siku-siku', warna:'#7c5cff', test:function(k){ return !SHAPES[k].bunder && SHAPES[k].pts.length===4 && analyze(k).siku<4; }}
+];
+var ddScore=0;
+function initDD(){
+  var items = document.getElementById('ddItems');
+  var bins = document.getElementById('ddBins');
+  items.innerHTML=''; bins.innerHTML='';
+  ddScore=0;
+  document.getElementById('ddScore').textContent='0';
+  document.getElementById('ddFb').className='fb';
+  var list = ORDER.slice().sort(function(){return Math.random()-0.5;});
+
+  BINS.forEach(function(b){
+    var d=document.createElement('div');
+    d.className='bin'; d.dataset.bin=b.id;
+    d.style.borderColor=b.warna;
+    d.innerHTML = '<h4 style="color:'+b.warna+'">'+b.judul+'</h4><div class="slot"></div>';
+    bins.appendChild(d);
+  });
+  list.forEach(function(k){
+    var d=document.createElement('div');
+    d.className='dd-item'; d.dataset.k=k;
+    d.innerHTML = shapeSVG(k,{sw:8,labels:false,show:{}}) + '<span>'+SHAPES[k].singkat+'</span>';
+    items.appendChild(d);
+    pasangDrag(d);
+  });
+  document.getElementById('ddLeft').textContent = list.length;
+}
+function pasangDrag(el){
+  var ghost=null, startX=0, startY=0;
+  el.addEventListener('pointerdown', function(e){
+    e.preventDefault();
+    var r = el.getBoundingClientRect();
+    ghost = el.cloneNode(true);
+    ghost.className = 'dd-item';
+    ghost.style.position='fixed';
+    ghost.style.left = r.left+'px';
+    ghost.style.top = r.top+'px';
+    ghost.style.width = r.width+'px';
+    ghost.style.zIndex='999';
+    ghost.style.pointerEvents='none';
+    ghost.style.boxShadow='0 12px 18px rgba(0,0,0,.25)';
+    document.body.appendChild(ghost);
+    startX = e.clientX - r.left; startY = e.clientY - r.top;
+    el.classList.add('dragging');
+    el.setPointerCapture(e.pointerId);
+    beep(400,0.05,'sine',0.06);
+  });
+  el.addEventListener('pointermove', function(e){
+    if(!ghost) return;
+    ghost.style.left = (e.clientX - startX)+'px';
+    ghost.style.top = (e.clientY - startY)+'px';
+    document.querySelectorAll('.bin').forEach(function(b){ b.classList.remove('over'); });
+    var target = binDi(e.clientX, e.clientY);
+    if(target) target.classList.add('over');
+  });
+  function end(e){
+    if(!ghost) return;
+    var target = binDi(e.clientX, e.clientY);
+    ghost.remove(); ghost=null;
+    el.classList.remove('dragging');
+    document.querySelectorAll('.bin').forEach(function(b){ b.classList.remove('over'); });
+    if(target) cekJawaban(el, target);
+  }
+  el.addEventListener('pointerup', end);
+  el.addEventListener('pointercancel', end);
+}
+function binDi(x,y){
+  var found=null;
+  document.querySelectorAll('.bin').forEach(function(b){
+    var r=b.getBoundingClientRect();
+    if(x>=r.left && x<=r.right && y>=r.top && y<=r.bottom) found=b;
+  });
+  return found;
+}
+function cekJawaban(el, bin){
+  var id = bin.dataset.bin;
+  var b = BINS.filter(function(x){return x.id===id;})[0];
+  var k = el.dataset.k;
+  var fb = document.getElementById('ddFb');
+  if(b.test(k)){
+    nadaBenar();
+    ddScore += 10;
+    document.getElementById('ddScore').textContent = ddScore;
+    var mini = document.createElement('div');
+    mini.className='dd-item mini';
+    mini.style.width='58px';
+    mini.innerHTML = shapeSVG(k,{sw:10,labels:false}) + '<span style="font-size:10px">'+SHAPES[k].singkat+'</span>';
+    bin.querySelector('.slot').appendChild(mini);
+    el.classList.add('pop-out');
+    setTimeout(function(){ el.remove(); }, 300);
+    var sisa = document.querySelectorAll('#ddItems .dd-item').length - 1;
+    document.getElementById('ddLeft').textContent = sisa;
+    fb.className='fb show ok';
+    fb.innerHTML = 'Tepat! <b>'+SHAPES[k].nama+'</b> masuk ke kelompok "'+b.judul+'".';
+    if(sisa<=0){
+      fb.innerHTML = 'Hebat sekali! Semua bangun datar sudah berada di kelompok yang tepat. Skormu: <b>'+ddScore+'</b>.';
+      confetti(90); nadaMenang();
+    }
+  } else {
+    nadaSalah();
+    bin.classList.add('shake');
+    setTimeout(function(){ bin.classList.remove('shake'); }, 400);
+    var a = analyze(k);
+    var alasan = SHAPES[k].bunder
+      ? SHAPES[k].nama+' tidak punya sudut sama sekali, sisinya satu garis lengkung.'
+      : SHAPES[k].nama+' punya '+a.n+' sisi, '+a.n+' sudut, dan '+a.siku+' sudut siku-siku. Coba baca lagi ciri-cirinya, ya!';
+    fb.className='fb show no';
+    fb.innerHTML = 'Belum tepat. '+alasan;
+  }
+}
+document.getElementById('ddReset').addEventListener('click', function(){ initDD(); beep(500,0.08,'sine',0.08); });
+
+/* ---------- SIM 4: PERMAINAN MEMORI ---------- */
+var MEMK = ['persegi','persegiPanjang','segitigaSS','lingkaran','jajarGenjang','belahKetupat','layangLayang','trapesium'];
+var memOpen=[], memDone=0, memMoves=0, memLock=false;
+function initMem(){
+  memOpen=[]; memDone=0; memMoves=0; memLock=false;
+  document.getElementById('memMoves').textContent='0';
+  document.getElementById('memPairs').textContent='0';
+  document.getElementById('memFb').className='fb';
+  var cards=[];
+  MEMK.forEach(function(k){
+    cards.push({k:k, tipe:'gambar'});
+    cards.push({k:k, tipe:'nama'});
+  });
+  cards.sort(function(){return Math.random()-0.5;});
+  var grid=document.getElementById('memGrid');
+  grid.innerHTML='';
+  cards.forEach(function(c, i){
+    var d=document.createElement('div');
+    d.className='mem-card';
+    d.dataset.k=c.k; d.dataset.i=i;
+    d.innerHTML =
+      '<div class="back">?</div>'+
+      '<div class="face">'+(c.tipe==='gambar' ? shapeSVG(c.k,{sw:11,labels:false}) : '<div class="nm">'+SHAPES[c.k].nama+'</div>')+'</div>';
+    d.addEventListener('click', function(){ bukaKartu(d); });
+    grid.appendChild(d);
+  });
+}
+function bukaKartu(d){
+  if(memLock) return;
+  if(d.classList.contains('done') || d.classList.contains('open')) return;
+  if(memOpen.length>=2) return;
+  d.classList.add('open');
+  beep(620,0.08,'triangle',0.09);
+  memOpen.push(d);
+  if(memOpen.length===2){
+    memMoves++;
+    document.getElementById('memMoves').textContent = memMoves;
+    var a=memOpen[0], b=memOpen[1];
+    if(a.dataset.k===b.dataset.k){
+      a.classList.add('done'); b.classList.add('done');
+      memOpen=[]; memDone++;
+      document.getElementById('memPairs').textContent = memDone;
+      nadaBenar();
+      var fb=document.getElementById('memFb');
+      if(memDone===8){
+        fb.className='fb show ok';
+        fb.innerHTML='Luar biasa! Semua pasangan ketemu dalam <b>'+memMoves+'</b> langkah.';
+        confetti(110); nadaMenang();
+      }
+    } else {
+      memLock=true;
+      setTimeout(function(){
+        a.classList.remove('open'); b.classList.remove('open');
+        memOpen=[]; memLock=false;
+      }, 850);
+      beep(300,0.12,'sawtooth',0.07);
+    }
+  }
+}
+document.getElementById('memReset').addEventListener('click', function(){ initMem(); beep(500,0.08,'sine',0.08); });
+
+/* ============================================================
+   KUIS
+   ============================================================ */
+var BANK = [
+  {fig:'persegi', t:'Bangun datar pada gambar di atas adalah ...', o:['Persegi','Persegi panjang','Jajar genjang','Belah ketupat'], a:0, w:'Persegi memiliki 4 sisi sama panjang dan 4 sudut siku-siku.'},
+  {t:'Berapa jumlah sisi yang dimiliki sebuah segitiga?', o:['3 sisi','4 sisi','5 sisi','6 sisi'], a:0, w:'Segitiga berasal dari kata "tiga", jadi selalu punya 3 sisi dan 3 sudut.'},
+  {t:'Bangun datar yang tidak memiliki sudut adalah ...', o:['Segitiga','Persegi','Lingkaran','Trapesium'], a:2, w:'Lingkaran dibatasi oleh satu garis lengkung, jadi tidak punya sudut.'},
+  {t:'Jumlah ketiga sudut pada segitiga selalu ...', o:['90°','180°','270°','360°'], a:1, w:'Jumlah sudut segitiga selalu 180°, berapapun bentuknya.'},
+  {t:'Bangun datar yang memiliki 4 sisi sama panjang dan 4 sudut siku-siku adalah ...', o:['Persegi','Belah ketupat','Jajar genjang','Layang-layang'], a:0, w:'Belah ketupat juga bersisi sama panjang, tetapi sudutnya bukan siku-siku.'},
+  {t:'Banyaknya sumbu simetri lipat pada persegi adalah ...', o:['1','2','3','4'], a:3, w:'Persegi bisa dilipat sama persis melalui 4 garis: 2 garis tengah dan 2 diagonal.'},
+  {fig:'belahKetupat', t:'Nama bangun datar pada gambar di atas adalah ...', o:['Belah ketupat','Jajar genjang','Layang-layang','Trapesium'], a:0, w:'Belah ketupat punya 4 sisi sama panjang dengan sudut berhadapan sama besar.'},
+  {t:'Bangun datar yang memiliki sepasang sisi berhadapan yang sejajar adalah ...', o:['Trapesium','Layang-layang','Segitiga','Lingkaran'], a:0, w:'Ciri utama trapesium: hanya sepasang sisi berhadapan yang sejajar.'},
+  {t:'Diameter sebuah lingkaran adalah ... dari jari-jarinya.', o:['Setengah','Dua kali','Tiga kali','Sama'], a:1, w:'Diameter = 2 x jari-jari. Jari-jari = setengah diameter.'},
+  {t:'Rumus luas persegi panjang yang tepat adalah ...', o:['p x l','2 x (p + l)','4 x s','1/2 x a x t'], a:0, w:'Luas = panjang x lebar. Kalau 2 x (p + l) itu rumus keliling.'},
+  {t:'Keliling persegi yang panjang sisinya 7 cm adalah ...', o:['14 cm','21 cm','28 cm','49 cm'], a:2, w:'Keliling persegi = 4 x s = 4 x 7 = 28 cm.'},
+  {t:'Luas persegi panjang dengan panjang 8 cm dan lebar 5 cm adalah ...', o:['26 cm2','30 cm2','40 cm2','45 cm2'], a:2, w:'Luas = p x l = 8 x 5 = 40 cm2.'},
+  {t:'Bangun datar bersisi empat yang sudutnya berhadapan sama besar, sisinya berhadapan sejajar, tetapi sudutnya bukan siku-siku, adalah ...', o:['Jajar genjang','Persegi','Persegi panjang','Segitiga'], a:0, w:'Itulah ciri khas jajar genjang. Persegi dan persegi panjang sudutnya siku-siku.'},
+  {t:'Layang-layang memiliki ciri ...', o:['4 sisi sama panjang','2 pasang sisi berdekatan sama panjang','3 sisi','sisi yang tak terhingga'], a:1, w:'Layang-layang punya 2 pasang sisi yang berdekatan sama panjang.'},
+  {fig:'trapesium', t:'Ciri khusus bangun datar di atas adalah ...', o:['4 sisi sama panjang','sepasang sisi sejajar','4 sudut siku-siku','tidak punya sisi'], a:1, w:'Trapesium punya sepasang sisi berhadapan yang sejajar.'},
+  {t:'Luas segitiga dengan alas 10 cm dan tinggi 6 cm adalah ...', o:['60 cm2','30 cm2','16 cm2','24 cm2'], a:1, w:'Luas = 1/2 x alas x tinggi = 1/2 x 10 x 6 = 30 cm2.'},
+  {t:'Banyaknya sumbu simetri yang dimiliki lingkaran adalah ...', o:['1','2','4','Tak terhingga'], a:3, w:'Setiap garis yang melalui titik pusat merupakan sumbu simetri, jadi tak terhingga.'},
+  {fig:'persegiPanjang', t:'Bangun datar pada gambar di atas adalah ...', o:['Persegi panjang','Persegi','Trapesium','Jajar genjang'], a:0, w:'Persegi panjang: sisi berhadapan sama panjang dan sejajar, keempat sudutnya siku-siku.'},
+  {t:'Keliling persegi panjang berukuran 12 cm x 4 cm adalah ...', o:['16 cm','32 cm','48 cm','24 cm'], a:1, w:'Keliling = 2 x (p + l) = 2 x (12 + 4) = 32 cm.'},
+  {t:'Kedua diagonal belah ketupat berpotongan secara ...', o:['tidak berpotongan','sejajar','tegak lurus','melengkung'], a:2, w:'Diagonal belah ketupat berpotongan tegak lurus dan saling membagi dua sama panjang.'},
+  {fig:'segitigaSiku', t:'Bangun di atas memiliki ciri khusus, yaitu ...', o:['1 sudut siku-siku','4 sudut siku-siku','tidak punya sudut','semua sudut 60°'], a:0, w:'Segitiga siku-siku punya 1 sudut 90° dan sisi terpanjangnya disebut sisi miring.'},
+  {fig:'jajarGenjang', t:'Jumlah pasang sisi sejajar pada bangun di atas adalah ...', o:['1 pasang','2 pasang','3 pasang','tidak ada'], a:1, w:'Jajar genjang punya 2 pasang sisi berhadapan yang sejajar dan sama panjang.'}
+];
+
+var qList=[], qIdx=0, qScore=0;
+function mulaiKuis(){
+  qList = BANK.slice().sort(function(){return Math.random()-0.5;}).slice(0,10);
+  qIdx=0; qScore=0;
+  document.getElementById('qScore').textContent='0';
+  tampilSoal();
+}
+function tampilSoal(){
+  if(qIdx>=qList.length){ return selesaiKuis(); }
+  var q = qList[qIdx];
+  document.getElementById('qNum').textContent = qIdx+1;
+  document.getElementById('qBar').style.width = (qIdx/qList.length*100)+'%';
+  var box = document.getElementById('qBox');
+  var fig = q.fig ? '<div class="q-figure">'+shapeSVG(q.fig,{sw:7,labels:false})+'</div>' : '';
+  box.innerHTML = fig + '<h3 style="font-size:19px">'+q.t+'</h3><div class="opts" id="qOpts"></div><div class="fb" id="qFb"></div>';
+  var opts = document.getElementById('qOpts');
+  q.o.forEach(function(txt, i){
+    var b=document.createElement('button');
+    b.className='opt';
+    b.innerHTML = '<span style="width:26px;height:26px;border-radius:50%;border:2.5px solid #2b2b4a;display:grid;place-items:center;font-size:13px;flex:none">'+'ABCD'[i]+'</span><span>'+txt+'</span>';
+    b.addEventListener('click', function(){ jawab(i, b, q, opts); });
+    opts.appendChild(b);
+  });
+}
+function jawab(i, btn, q, opts){
+  opts.querySelectorAll('.opt').forEach(function(b){ b.disabled=true; });
+  var fb = document.getElementById('qFb');
+  if(i===q.a){
+    btn.classList.add('correct');
+    qScore += 10;
+    document.getElementById('qScore').textContent = qScore;
+    fb.className='fb show ok';
+    fb.innerHTML = 'Benar! '+q.w;
+    nadaBenar();
+  } else {
+    btn.classList.add('wrong');
+    opts.querySelectorAll('.opt')[q.a].classList.add('correct');
+    fb.className='fb show no';
+    fb.innerHTML = 'Belum tepat. Jawaban yang benar: <b>'+q.o[q.a]+'</b>. '+q.w;
+    nadaSalah();
+  }
+  var next = document.createElement('button');
+  next.className='btn v';
+  next.style.marginTop='14px';
+  next.textContent = (qIdx===qList.length-1) ? 'Lihat Hasil' : 'Soal Berikutnya';
+  next.addEventListener('click', function(){ qIdx++; tampilSoal(); });
+  fb.appendChild(next);
+}
+function selesaiKuis(){
+  document.getElementById('qBar').style.width='100%';
+  var skor = qScore;
+  var bintang = skor>=90 ? 5 : skor>=80 ? 4 : skor>=60 ? 3 : skor>=40 ? 2 : 1;
+  var pesan = skor>=90 ? 'Luar biasa! Kamu benar-benar jago bangun datar!'
+            : skor>=70 ? 'Bagus sekali! Sedikit lagi jadi sempurna.'
+            : skor>=50 ? 'Cukup baik. Ayo pelajari lagi materi ciri-cirinya.'
+            : 'Jangan menyerah. Coba buka menu Materi, lalu ulangi kuisnya.';
+  document.getElementById('qBox').innerHTML =
+    '<div class="score-box">'+
+      '<div class="q-figure" style="max-width:170px;margin:0 auto 10px">'+shapeSVG('persegi',{sw:8,labels:false})+'</div>'+
+      '<h3>Skor Kamu: '+skor+'</h3>'+
+      '<div class="stars">'+ barisBintang(bintang,5) +'</div>'+
+      '<p>'+pesan+'</p>'+
+      '<button class="btn g" id="qUlang">Ulangi Kuis</button>'+
+    '</div>';
+  document.getElementById('qUlang').addEventListener('click', function(){ mulaiKuis(); });
+  if(skor>=70){ confetti(120); nadaMenang(); }
+}
+
+/* ---------- NAV AKTIF ---------- */
+var nl = document.querySelectorAll('.nl');
+window.addEventListener('scroll', function(){
+  var y = window.scrollY + 140, cur='materi';
+  ['materi','simulasi','kuis','petunjuk'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && el.offsetTop <= y) cur = id;
+  });
+  nl.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+cur); });
+});
+
+/* ---------- TOMBOL SUARA ---------- */
+document.getElementById('soundBtn').addEventListener('click', function(){
+  soundOn = !soundOn;
+  this.textContent = soundOn ? 'SUARA' : 'SUNYI';
+  this.style.opacity = soundOn ? '1' : '.5';
+  if(soundOn) beep(700,0.1,'sine',0.1);
+});
+
+/* ---------- MULAI ---------- */
+gambarExplorer();
+gambarLab();
+initDD();
+initMem();
+mulaiKuis();
+
+})();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a3f0ecc18d09df97',t:'MTc5MDA3NjA3Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
